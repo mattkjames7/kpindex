@@ -10,7 +10,7 @@ This package depends on the following:
 * RecarrayTools
 * PyFileIO
 
-whicha re all available on PyPI.
+which are all available on PyPI.
 
 Installation is simple and can be done in one of four ways:
 
