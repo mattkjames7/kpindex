@@ -11,3 +11,5 @@ except:
 dtype = [('Date','int32'),('Index','int8'),('ut0','float32'),('ut1','float32'),
 		('Kp','float32'),('Sum','float32'),('Ap','int8'),('Cp','float32'),
 		('Activity','U3')]
+
+Data = None

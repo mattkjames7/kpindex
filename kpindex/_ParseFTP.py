@@ -15,7 +15,7 @@ def _ParseFTP():
 	nl = np.size(lines)
 	
 	#firstly, search for the lines which contain 'omni_min' or 'omni_5min'
-	use = np.zeros(nl,dtype='nool')
+	use = np.zeros(nl,dtype='bool')
 	for i in range(0,nl):
 		if '.tab"' in lines[i]:
 			use[i] = True

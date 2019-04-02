@@ -40,8 +40,8 @@ def _ReadKPTab(fname):
 	
 	#now we can start deciphering the file
 	w0 = [0,8,11,14,17,21,24,27,30,35,39,43,46]
-	w1 = [6,10,13,16,19,23,26,29,33,38,42,45,49]
-	out = np.recarray(n,dtype=dtype)
+	w1 = [6,10,13,16,19,23,26,29,32,38,42,45,49]
+	out = np.recarray(n*8,dtype=dtype)
 	p = 0
 	for i in range(0,n):
 		#line by line
@@ -71,6 +71,8 @@ def _ReadKPTab(fname):
 		
 		#3-hourly
 		for j in range(0,8):
+			out.ut0[p] = j*3.0
+			out.ut1[p] = (j+1)*3.0
 			out.Date[p] = Date
 			out.Sum[p] = Sum
 			out.Activity[p] = Act 

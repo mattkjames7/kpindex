@@ -19,10 +19,10 @@ def _ConvertFTPFile(FullPath,fname,UpdateDate):
 	
 	'''
 	#read the file
-	data = _ReadKPTab(FullPath)
+	out = _ReadKPTab(FullPath)
 	
 	#get the date yyyymm	
-	YearMonth = data.Date[0]//100
+	YearMonth = out.Date[0]//100
 	
 	#save file
 	outfname = 'Kp-{:6d}.bin'.format(YearMonth)
