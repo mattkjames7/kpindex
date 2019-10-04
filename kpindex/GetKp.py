@@ -36,7 +36,7 @@ def GetKp(Date=None):
 			tmp = np.fromfile(f,dtype='int32',count=1)[0]
 			f.close()
 			n += tmp
-			
+
 		#create new output data array
 		dtype = Globals.dtype
 		data = np.recarray(n,dtype=dtype)
