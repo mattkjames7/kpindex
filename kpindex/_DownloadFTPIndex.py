@@ -1,7 +1,7 @@
 import os
 from . import Globals
 
-def _DownloadFTPIndex():
+def _DownloadFTPIndex(ftp):
 	'''
 	This routine downloads the index.html of the Potzdam FTP site
 	ftp://ftp.gfz-potsdam.de/pub/home/obs/kp-ap/tab/
@@ -12,10 +12,15 @@ def _DownloadFTPIndex():
 	'''
 	#check that the temporary folder exists
 	if not os.path.isdir(Globals.DataPath+'tmp/'):
-		os.system('mkdir -pv '+Globals.DataPath+'tmp/')
+		os.makedirs(os.path.dirname(Globals.DataPath+'tmp/'))
 
-	#download using wget
-	os.system('wget ftp://ftp.gfz-potsdam.de/pub/home/obs/kp-ap/tab/ -O '+Globals.DataPath+'tmp/index.html')
+	#download using ftplib
+	foo=open(Globals.DataPath+'tmp/index.html',"w")	
+	def customWriter(line):
+		foo.write(line + "\n")
+
+	ftp.retrlines('LIST', customWriter)
+	foo.close()
 	
 
 	#check that the file exists, return True if so
