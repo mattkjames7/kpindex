@@ -28,7 +28,7 @@ def _ConvertFTPFile(FullPath,fname,UpdateDate):
 	outfname = 'Kp-{:6d}.bin'.format(YearMonth)
 	outpath = Globals.DataPath+'bin/'
 	if not os.path.isdir(outpath):
-		os.system('mkdir -pv '+outpath)
+		os.makedirs(os.path.dirname(outpath))
 	RT.SaveRecarray(out,outpath+outfname)
 	print('Saved file: '+outfname)
 	
