@@ -28,7 +28,7 @@ def UpdateLocalData(Force=False):
 		return
 	FileNames,Addresses,UpdateDates = _ParseFTP()
 	n = np.size(FileNames)
-	
+	ftp.close()
 	#check current data index
 	idx = _ReadDataIndex()
 	
@@ -45,13 +45,13 @@ def UpdateLocalData(Force=False):
 
 	if n == 0:
 		print('No files to update.')
-		ftp.close()
+		
 		return 
 		
 	for i in range(0,n):
 		print('Downloading file {0} of {1}'.format(i+1,n))
 		#download file
-		tmp = _DownloadFTPFile(ftp,FileNames[i])
+		tmp = _DownloadFTPFile(FileNames[i])
 		
 		print('Converting to binary')
 		#convert file
