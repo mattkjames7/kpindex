@@ -1,5 +1,7 @@
 from . import Globals
 from ftplib import FTP
+progress = 0
+import numpy as np
 
 def _GetCallback(f,ftp,fname):
 	'''
@@ -16,16 +18,19 @@ def _GetCallback(f,ftp,fname):
 	
 	'''
 	#get the size of the file
-	size = ftp.size(Globals.ftpdir+fname)
+	#size = ftp.size(Globals.ftpdir+fname)
+	size = ftp.size(fname)
 	
 	#set progress to 0
+	global progress
 	progress = 0
 	
 	def callback(chunk):
 		f.write(chunk)
+		global progress
 		progress += len(chunk)
 		
-		ndone = np.int32(50*progress/size)
+		ndone = np.int32(np.ceil(50*progress/size))
 		sdone = '\r[' + '='*ndone + '-'*(50-ndone) + ']'
 		print(sdone,end='')
 		
@@ -50,7 +55,7 @@ def _DownloadFTPFile(fname):
 	ftp = FTP(Globals.ftpbase)
 	ftp.login()  
 	ftp.cwd(Globals.ftpdir)
-	
+
 	#open the output file
 	f = open(Globals.DataPath+'tmp/'+fname,"wb")	
 	
@@ -59,6 +64,7 @@ def _DownloadFTPFile(fname):
 	
 	#download binary file using ftplib
 	ftp.retrbinary('RETR '+fname, cb)
+	print()
 	
 	#close the file
 	f.close()
