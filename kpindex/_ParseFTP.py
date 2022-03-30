@@ -2,6 +2,19 @@ from . import Globals
 import PyFileIO as pf
 import numpy as np
 
+months = { 	'Jan':1,
+			'Feb':2,
+			'Mar':3,
+			'Apr':4,
+			'May':5,
+			'Jun':6,
+			'Jul':7,
+			'Aug':8,
+			'Sep':9,
+			'Oct':10,
+			'Nov':11,
+			'Dec':12 }
+			
 def _ParseFTP():
 	'''
 	This routine will read the FTP index file looking for file names
@@ -30,8 +43,14 @@ def _ParseFTP():
 	# note: negative indices are important because additional data in some lines
 	for i in range(0,nl):
 		#deal with date first
-		s = lines[i].split()		
-		UpdateDates[i] = ''.join(s[0:-1])
+		s = lines[i].split()	
+		if ':' in s[-2]:
+			yr = 2022
+		else:
+			yr = np.int32(s[-2])
+		mn = months[s[-4]]
+		dy = np.int32(s[-3])
+		UpdateDates[i] = '{:08}'.format(yr*10000 + mn*100 + dy)
 		
 		#now let's get the ftp address
 		Addresses[i] = Globals.ftpadress + s[-1]
