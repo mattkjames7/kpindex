@@ -22,11 +22,13 @@ def UpdateLocalData(Force=False):
 
 	#let's download and read the FTP index
 	status = _DownloadFTPIndex(ftp)
+
 	if not status:
 		print('Download failed; check for write permission to data folder')
 		ftp.close()
 		return
 	FileNames,Addresses,UpdateDates = _ParseFTP()
+	
 	n = np.size(FileNames)
 	ftp.close()
 	#check current data index

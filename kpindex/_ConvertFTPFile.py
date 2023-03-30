@@ -6,7 +6,7 @@ import RecarrayTools as RT
 import DateTimeTools as TT
 from ._ReadDataIndex import _ReadDataIndex
 from ._UpdateDataIndex import _UpdateDataIndex
-from ._ReadKPTab import _ReadKPTab
+from ._ReadKpTxt import _ReadKpTxt
 
 def _ConvertFTPFile(FullPath,fname,UpdateDate):
 	'''
@@ -19,13 +19,13 @@ def _ConvertFTPFile(FullPath,fname,UpdateDate):
 	
 	'''
 	#read the file
-	out = _ReadKPTab(FullPath)
+	out = _ReadKpTxt(FullPath)
 	
 	#get the date yyyymm	
-	YearMonth = out.Date[0]//100
+	Year = out.Date[0]//10000
 	
 	#save file
-	outfname = 'Kp-{:6d}.bin'.format(YearMonth)
+	outfname = 'Kp-{:04d}.bin'.format(Year)
 	outpath = Globals.DataPath+'bin/'
 	if not os.path.isdir(outpath):
 		os.makedirs(os.path.dirname(outpath))

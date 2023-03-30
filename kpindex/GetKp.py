@@ -3,6 +3,7 @@ from . import Globals
 from .ReadKp import ReadKp
 import RecarrayTools as RT
 from ._ReadDataIndex import _ReadDataIndex
+import DateTimeTools as TT
 
 def GetKp(Date=None):
 	'''
@@ -22,7 +23,7 @@ def GetKp(Date=None):
 	if Globals.Data is None:
 		#read the index to get the full list of files
 		idx = _ReadDataIndex()
-		YM = np.array([np.int32(x[3:9]) for x in idx.FileName])
+		YM = np.array([np.int32(x[3:7]) for x in idx.FileName])
 		srt = np.argsort(YM)
 		YM = YM[srt]
 		fnames = idx.FileName[srt]

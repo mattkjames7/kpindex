@@ -1,6 +1,7 @@
 from . import Globals
 import PyFileIO as pf
 import numpy as np
+import datetime
 
 months = { 	'Jan':1,
 			'Feb':2,
@@ -14,13 +15,33 @@ months = { 	'Jan':1,
 			'Oct':10,
 			'Nov':11,
 			'Dec':12 }
-			
+
+def _ListFiles(currYear):
+
+	#we need a list of specific file names
+	#as this directory oin the FTP site now
+	#stores multiple different types of files
+	years = np.arange(1932,currYear+1)
+	fnames = ['Kp_ap_{:04d}.txt'.format(y) for y in years]
+
+	return fnames
+
+
 def _ParseFTP():
 	'''
 	This routine will read the FTP index file looking for file names
 	and their associated update dates.
 	
 	'''
+	
+
+	#get the current year
+	today = datetime.datetime.today()
+	currYear = np.int32(today.strftime('%Y'))
+
+	#list of files to look for
+	files = _ListFiles(currYear)
+
 	#read the file in
 	fname = Globals.DataPath+'tmp/index.html'
 	lines = pf.ReadASCIIFile(fname)
@@ -29,7 +50,11 @@ def _ParseFTP():
 	#firstly, search for the lines which contain 'omni_min' or 'omni_5min'
 	use = np.zeros(nl,dtype='bool')
 	for i in range(0,nl):
-		if '.tab' in lines[i]:
+		isgd = False
+		for f in files:
+			if f in lines[i]:
+				isgd = True
+		if isgd:
 			use[i] = True
 	keep = np.where(use)[0]
 	lines = lines[keep]
@@ -45,7 +70,7 @@ def _ParseFTP():
 		#deal with date first
 		s = lines[i].split()	
 		if ':' in s[-2]:
-			yr = 2022
+			yr = currYear
 		else:
 			yr = np.int32(s[-2])
 		mn = months[s[-4]]
