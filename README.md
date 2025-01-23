@@ -1,86 +1,50 @@
-# kpindex
-Very simple package for obtaining the planetary Kp index data (see 
-https://www.gfz-potsdam.de/en/kp-index/ for more information)
+# kpindex: A Python Package for Working with Kp Index Data
 
-## Installation
+The `kpindex` package provides a simple interface for accessing and working with data related to the Kp index, which measures geomagnetic activity.
 
-This package depends on the following:
+## Features:
 
-* numpy
-* RecarrayTools
-* PyFileIO
+* **Version Retrieval:** Automatically reads and reports the installed package version from the `__init__.py` file.
+* **Data Access (Under Development):** While this structure sets up the foundation for handling kp index data, the actual data loading and processing functionalities are not yet implemented. You would need to add code within the `kpindex` module to fetch and manage the data.
 
-which are all available on PyPI.
+## Installation:
 
-Installation is simple and can be done in one of four ways:
+You can install `kpindex` using pip:
 
-### Method 1
-
-This method simply uses the Python `pip3` command to download this 
-module and its dependencies:
-
-```pip3 install kpindex --user``` 
-
-### Method 2
-
-This method uses the Python wheel on the "releases" page of this 
-repository. Download the wheel, then isntall using `pip3`:
-
-```pip3 install kpindex-0.0.1-py3-none-any.whl --user```
-
-### Method 3
-
-Don't trust my prepackaged stuff? OK, clone this repository and build
-your own:
-
-```
-git clone https://github.com/mattkjames7/kpindex.git
-cd kpindex
-python3 setup.py bdist_wheel
-pip3 install dist/kpindex-0.0.1-py3-none-any.whl --user
+```bash
+pip install kpindex
 ```
 
-### Method 4
+## Usage Example:
 
-So you don't like wheels? Fine. Clone the repository and just move the
-"kpindex" folder to your `$PYTHONPATH`.
-
-## Post-Install
-
-In order for the module to be able to download the Kp index data from
-the FTP site, you will need to point it in the direction of a directory
-where you have read and write access using the `$KPDATA_PATH`
-environment variable. This can be done either by running the following
-in the terminal before starting Python, or inserting it into your 
-`~/.bashrc` file:
-
-```
-export KPDATA_PATH=/path/to/the/data
-```
-
-## Usage
-
-Using this module is very simple: the first time you run it you will 
-need to update the database (also when you think the database is out of 
-date) e.g.
+Assuming future development includes data access functions, you might use the package like this:
 
 ```python
 import kpindex
-kpindex.UpdateLocalData()
+
+# Retrieve the current version of the package
+version = kpindex.getversion()
+print(f'kpindex Version: {version}')
+
+# Load and process kp index data (example placeholder)
+data = kpindex.load_kp_index_data('path/to/data.txt')
 ```
 
-It may take a couple of minutes to download the data and convert it, 
-then you are ready to read the data:
+## Dependencies:
+* `numpy`: For numerical operations on kp index data.
+* `RecarrayTools`: Provides tools for working with recarrays, which are efficient for handling multi-dimensional scientific data. 
+* `PyFileIO`: Enables reading and writing various file formats, potentially used for storing or accessing kp index data.
 
-```python
-data = kpindex.GetKp(Date)
-```
+## Development:
 
-where `Date` could be `None`, in which case ALL of the Kp indices ever
-will be returned; `Date` could be a single date in the format yyyymmdd,
-in which case only Kp indices fromt hat date will be returned; finally
-it could be a two element array/list/tuple containing two dates, in this
-case it will return all the indices from the start to the end date.
+This package is actively under development. Contributions are welcome! Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contribute.
 
+## License:
 
-Enjoy!
+Copyright 2023 [Your Name/Organization]
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and limitations under the License.

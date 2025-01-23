@@ -6,6 +6,17 @@ import DateTimeTools as TT
 def _ReadKpTxt(fname):
     
 
+    """
+    Reads in Kp values from a text file.
+    
+    This function reads an ASCII file containing Kp (planetary magnetic index) data and converts it into a NumPy recarray for easier processing. The input file should follow a specific format, with each line representing a day's Kp value and other related information.
+    
+    Args:
+        fname (str): The path to the text file containing Kp data.
+    
+    Returns:
+        numpy.recarray: A NumPy recarray containing the parsed Kp data. Each element in the array represents a day with attributes such as 'Date', 'ut0', 'utm', 'utc', 'Kp', 'Ap', and 'D'.  
+    """
 	#read in the ascii
 	lines = pf.ReadASCIIFile(fname)
 	nl = lines.size

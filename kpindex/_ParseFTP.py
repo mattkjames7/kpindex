@@ -18,6 +18,17 @@ months = { 	'Jan':1,
 
 def _ListFiles(currYear):
 
+    """
+    Generates a list of file names based on the provided year. 
+    
+    The function creates a list of strings representing Kp_ap files for each year from 1932 up to and including the given `currYear`. Each file name follows the pattern 'Kp_ap_{:04d}.txt', where {:04d} is replaced with the corresponding year.
+    
+    Args:
+        currYear (int): The current year for which file names are to be generated.
+    
+    Returns:
+        list: A list of strings representing the file names in the desired format.
+    """
 	#we need a list of specific file names
 	#as this directory oin the FTP site now
 	#stores multiple different types of files
@@ -25,14 +36,23 @@ def _ListFiles(currYear):
 	fnames = ['Kp_ap_{:04d}.txt'.format(y) for y in years]
 
 	return fnames
-
-
 def _ParseFTP():
-	'''
-	This routine will read the FTP index file looking for file names
-	and their associated update dates.
-	
-	'''
+    """
+      
+    Reads the FTP index file and extracts file names, associated update dates, and FTP addresses.
+    
+       The function retrieves a list of files from a predefined source (based on the current year) and then parses an HTML file named 'index.html' located in the 'tmp' directory under the 'DataPath' specified in Globals.  It identifies lines containing specific file names ('omni_min' or 'omni_5min'), extracts relevant data such as the update year, month, day, FTP address, and file name.
+    
+       Args:
+            None
+    
+        Returns:
+          tuple: A tuple containing three arrays:
+             - FileNames (ndarray): An array of extracted file names.
+             - Addresses (ndarray): An array of corresponding FTP addresses.
+             - UpdateDates (ndarray): An array of update dates in the format 'YYYYMMDD'.
+       
+    """
 	
 
 	#get the current year
