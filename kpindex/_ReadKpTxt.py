@@ -6,6 +6,17 @@ import DateTimeTools as TT
 def _ReadKpTxt(fname):
     
 
+	"""
+	This function reads a text file containing Kp and Ap indices, which are used to compute geomagnetic indices.
+	
+	The function reads the ASCII-formatted data, filters out comment lines, and then parses the remaining data into a structured numpy array. The data is then converted into a structured output object that contains date-time information derived from the Year, Month, Day provided in the input file.
+	
+	Args:
+	    fname (str): Path to the ASCII text file containing Kp and Ap indices.
+	
+	Returns:
+	    out (struct): A structured object containing geomagnetic index data, including time stamps and values for Kp, Ap, and D. The fields are: Year, Month, Day, ut0, ut1, utm, days, daysm, Kp, Ap, D.
+	"""
 	#read in the ascii
 	lines = pf.ReadASCIIFile(fname)
 	nl = lines.size

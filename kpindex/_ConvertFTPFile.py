@@ -9,15 +9,9 @@ from ._UpdateDataIndex import _UpdateDataIndex
 from ._ReadKpTxt import _ReadKpTxt
 
 def _ConvertFTPFile(FullPath,fname,UpdateDate):
-	'''
-	Converts standard KP ASCII files to binary.
-	
-	Inputs:
-		FullPath: full apth and file name of the input file
-		fname: just the name of the input file
-		UpdateDate: The date which this was last upated on the OMNI site.
-	
-	'''
+	"""
+	Converts standard KP ASCII files to binary format for data storage. The function reads the input file, converts it into a binary file with a specific naming convention, and updates an index file with information about the newly created binary file.
+	"""
 	#read the file
 	out = _ReadKpTxt(FullPath)
 	

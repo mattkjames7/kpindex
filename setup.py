@@ -6,10 +6,9 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 def getversion():
-	'''
-	read the version string from __init__
-	
-	'''
+	"""
+	getversion() is a function that retrieves the version string from __init__.py file. It reads the contents of the file and looks for lines containing '__version__' to extract the version number.
+	"""
 	#get the init file path
 	thispath = os.path.abspath(os.path.dirname(__file__))+'/'
 	initfile = thispath + 'kpindex/__init__.py'

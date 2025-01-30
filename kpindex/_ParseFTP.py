@@ -18,6 +18,9 @@ months = { 	'Jan':1,
 
 def _ListFiles(currYear):
 
+	"""
+	This function returns a list of file names corresponding to the Kp values from specific years. It generates filenames in the format 'Kp_ap_yyyy.txt' where yyyy represents the year. The function iterates over a range of years starting from 1932 up to the provided currYear, inclusive. This allows for easy retrieval and processing of historical data files.
+	"""
 	#we need a list of specific file names
 	#as this directory oin the FTP site now
 	#stores multiple different types of files
@@ -28,11 +31,9 @@ def _ListFiles(currYear):
 
 
 def _ParseFTP():
-	'''
-	This routine will read the FTP index file looking for file names
-	and their associated update dates.
-	
-	'''
+	"""
+	This function parses FTP index files to extract file names, addresses, and update dates. It uses the current year to filter files relevant for the current season.
+	"""
 	
 
 	#get the current year

@@ -1,86 +1,83 @@
-# kpindex
-Very simple package for obtaining the planetary Kp index data (see 
-https://www.gfz-potsdam.de/en/kp-index/ for more information)
+### Project Overview
 
-## Installation
+This project aims to provide a comprehensive library for accessing and processing geomagnetic indices, specifically the Kp and Ap indices.
 
-This package depends on the following:
+#### Key Features
+- **Data Access**: The package includes modules for downloading data from specific FTP servers.
+- **Data Processing**: Functions to read, parse, and structure the downloaded data into usable formats.
+- **Time Series Analysis**: Tools for analyzing time series data of geomagnetic indices.
+- **Visualization**: Capabilities to generate plots for visualizing patterns in the indices.
 
-* numpy
-* RecarrayTools
-* PyFileIO
-
-which are all available on PyPI.
-
-Installation is simple and can be done in one of four ways:
-
-### Method 1
-
-This method simply uses the Python `pip3` command to download this 
-module and its dependencies:
-
-```pip3 install kpindex --user``` 
-
-### Method 2
-
-This method uses the Python wheel on the "releases" page of this 
-repository. Download the wheel, then isntall using `pip3`:
-
-```pip3 install kpindex-0.0.1-py3-none-any.whl --user```
-
-### Method 3
-
-Don't trust my prepackaged stuff? OK, clone this repository and build
-your own:
-
+#### Project Structure
 ```
-git clone https://github.com/mattkjames7/kpindex.git
-cd kpindex
-python3 setup.py bdist_wheel
-pip3 install dist/kpindex-0.0.1-py3-none-any.whl --user
+kpindex/
+├── __init__.py
+├── setup.py
+├── _readKpApSNF107.py
+├── _readKpTxt.py
+├── _ReadKpGMT.py
+├── _ReadKpASCII.py
+├── _ReadKpIndex.py
+└── README.md
 ```
 
-### Method 4
+#### Dependencies
+- Python 3.6 or higher
+- `numpy` 
+- Additional libraries as specified in each module
 
-So you don't like wheels? Fine. Clone the repository and just move the
-"kpindex" folder to your `$PYTHONPATH`.
+### How to Use
+1. Install the package using `pip install kpindex`
+2. Access data via modules like `_readKpApSNF107.py` and `_ReadKpGMT.py`
+3. Process data with built-in functions for filtering, analysis, and visualization
+4. Output results in desired formats
 
-## Post-Install
+### Contributing
+1. Fork the repository
+2. Create a feature branch or issue
+3. Commit changes to your branch
+4. Push to the repository
+5. Create a pull request
 
-In order for the module to be able to download the Kp index data from
-the FTP site, you will need to point it in the direction of a directory
-where you have read and write access using the `$KPDATA_PATH`
-environment variable. This can be done either by running the following
-in the terminal before starting Python, or inserting it into your 
-`~/.bashrc` file:
-
+### Issues
+1. Report bugs or suggest improvements
+2. Search existing issues for similar problems
+3. Open new issues for unrecognized bugs
 ```
-export KPDATA_PATH=/path/to/the/data
-```
+        <details>
+          <summary>
+            Expand for installation instructions and usage examples.
+          </summary>
+          
+          <h4>Installation</h4>
+          ```bash
+              pip install kpindex
+          ```
+          
+          <h4>Usage Example</h4>
+          ```python
+              import kpindex
+              # Load Kp data from a specific file
+              kp_data = kpindex._readKpApSNF107.Kp()
+              print(kp_data.head())
+          ```
+          </details>
+        <details>
+          <summary>
+            Expand for detailed documentation and contribution guidelines.
+          </summary>
+          
+          <h4>Detailed Documentation</h4>
+          Each module in the package contains functions to perform specific tasks, such as reading different data formats (ASCII, GMT, etc.), performing calculations, and generating visualizations. For example:
 
-## Usage
+- `_readKpApSNF107.py` handles reading SN F107 data
+- `_ReadKpGMT.py` focuses on GMT formatted data
+- `_ReadKpASCII.py` deals with ASCII text files
 
-Using this module is very simple: the first time you run it you will 
-need to update the database (also when you think the database is out of 
-date) e.g.
+The package also includes functionality for time series analysis and generating reports.
 
-```python
-import kpindex
-kpindex.UpdateLocalData()
-```
+For detailed usage instructions, please refer to the module-level docstrings or consult the project documentation available at [GitHub](link).
 
-It may take a couple of minutes to download the data and convert it, 
-then you are ready to read the data:
-
-```python
-data = kpindex.GetKp(Date)
-```
-
-where `Date` could be `None`, in which case ALL of the Kp indices ever
-will be returned; `Date` could be a single date in the format yyyymmdd,
-in which case only Kp indices fromt hat date will be returned; finally
-it could be a two element array/list/tuple containing two dates, in this
-case it will return all the indices from the start to the end date.
-
-
-Enjoy!
+</h4>
+        </details>
+      

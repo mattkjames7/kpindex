@@ -4,10 +4,15 @@ import PyFileIO as pf
 import numpy as np
 
 def _ReadDataIndex():
-	'''
-	Reads an index file containing the file names, update dates and
-	resolutions.
-	'''
+	"""
+	Reads an index file containing the file names, update dates and resolutions.
+	
+	    Args:
+	        None. This function does not take any parameters.
+	
+	    Returns:
+	        np.recarray: The contents of the DataIndex.dat file as a structured numpy array.
+	"""
 	#define the datatype
 	dtype = [('FileName','object'),('OldFileName','object'),('UpdateDate','object')]
 	

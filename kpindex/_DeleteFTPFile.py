@@ -1,13 +1,11 @@
 import os
 
 def _DeleteFTPFile(fname):
-	'''
-	Calls the linux rm command to remove the original data file after
-	conversion.
+	"""
+	Delete FTP file using the 'rm' command.
 	
-	Inputs:
-		fname: full path to file to delete
-	
-	'''
+	Args:
+	    fname (str): Full path to file to remove.
+	"""
 	os.remove(fname)
 	
