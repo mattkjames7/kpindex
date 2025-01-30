@@ -18,6 +18,15 @@ months = { 	'Jan':1,
 
 def _ListFiles(currYear):
 
+	"""
+	This function returns a list of file names corresponding to the given year range.
+	
+	Args:
+	    currYear (int): The current year for which to generate file names. This is used to create an inclusive range from 1932 up to this year.
+	
+	Returns:
+	    list: A list containing the file names in the format 'Kp_ap_{:04d}.txt', where {:04d} represents a zero-padded four-digit number for the year.
+	"""
 	#we need a list of specific file names
 	#as this directory oin the FTP site now
 	#stores multiple different types of files
@@ -28,11 +37,9 @@ def _ListFiles(currYear):
 
 
 def _ParseFTP():
-	'''
-	This routine will read the FTP index file looking for file names
-	and their associated update dates.
-	
-	'''
+	"""
+	This function parses FTP index files to extract file names and their associated update dates. The function reads the specified index.html file from the DataPath temporary directory, processes it, and returns lists of file names, FTP addresses, and update dates.
+	"""
 	
 
 	#get the current year

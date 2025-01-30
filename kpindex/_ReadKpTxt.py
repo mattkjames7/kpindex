@@ -6,6 +6,15 @@ import DateTimeTools as TT
 def _ReadKpTxt(fname):
     
 
+	"""
+	This function reads the Kp text file and returns a structured numpy array containing the data. It filters out any lines with comments and then reads the remaining data into an array with specific dtypes. The data is then transformed to calculate various time related variables like ut0, utc, etc.
+	
+	Args:
+	    fname (str): Name of the Kp text file to read.
+	
+	Returns:
+	    output (numpy.ndarray): A structured numpy array containing the Kp data.
+	"""
 	#read in the ascii
 	lines = pf.ReadASCIIFile(fname)
 	nl = lines.size

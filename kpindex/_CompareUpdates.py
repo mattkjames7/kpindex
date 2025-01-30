@@ -2,19 +2,12 @@ from . import Globals
 import numpy as np
 
 def _CompareUpdates(newdates,newfiles,idx):
-	'''
-	This routine will compare the FTP data with the local data to see 
-	which need updating.
-	
-	Inputs:
-		newdates: list of update dates as read in from the FTP site
-		newfiles: list of file names (original) from fTP site
-		idx: local index of stored data files
-		
-	Returns:
-		Boolean array
-	
-	'''
+	"""
+	Compare Updates Routine
+	All text here is placeholder for the actual docstring.
+	This includes the function's purpose, inputs, outputs,
+	and any other relevant information.
+	"""
 	
 	nf = np.size(newfiles)
 	update = np.zeros(nf,dtype='bool')

@@ -2,14 +2,15 @@ import os
 from . import Globals
 
 def _DownloadFTPIndex(ftp):
-	'''
-	This routine downloads the index.html of the Potzdam FTP site
-	ftp://ftp.gfz-potsdam.de/pub/home/obs/kp-ap/tab/
+	"""
+	This routine downloads the index.html of the Potzdam FTP site ftp://ftp.gfz-potsdam.de/pub/home/obs/kp-ap/tab/
 	
 	Returns:
-		Boolean, True if index file exists
+	    Boolean, True if index file exists
 	
-	'''
+	Args:
+	    ftp (obj): Description of ftp object.
+	"""
 	#check that the temporary folder exists
 	if not os.path.isdir(Globals.DataPath+'tmp/'):
 		os.makedirs(os.path.dirname(Globals.DataPath+'tmp/'))

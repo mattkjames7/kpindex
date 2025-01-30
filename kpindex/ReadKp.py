@@ -4,15 +4,9 @@ import os
 import RecarrayTools as RT
 
 def ReadKp(Year):
-	'''
-	Read in the converted Kp data for one yeah.
-	
-	Inputs: int
-		Year yyyy.
-		
-	Returns: 
-		numpy.recarray
-	'''
+	"""
+	Read in the converted Kp data for one year. This function reads a binary file containing Kp values for a specific year and returns them as a numpy recarray.
+	"""
 	dtype = Globals.dtype
 		
 	fname = Globals.DataPath+'bin/'+'Kp-{:04d}.bin'.format(Year)

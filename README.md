@@ -1,86 +1,44 @@
-# kpindex
-Very simple package for obtaining the planetary Kp index data (see 
-https://www.gfz-potsdam.de/en/kp-index/ for more information)
+ # Comprehensive Readme for Kpindex Module
+
+## Project Overview
+
+The Kpindex module is designed to handle and process data related to the KP (King's Physics) analysis. It provides tools for reading, comparing, and updating various data files associated with the KP analysis.
+
+### Main Features
+
+1. **Reading Data**: The module includes functions to read data from text and binary files, such as .txt and .dat formats.
+2. **Comparing Updates**: Tools are available to compare updates based on dates and filenames.
+3. **FTP Configuration**: The module supports configuration for accessing data via FTP servers.
+4. **Data Structure Handling**: It defines data structures and manages file paths, ensuring data is stored and accessed efficiently.
+
+### Prerequisites
+
+To use the Kpindex module, you will need to have installed the following dependencies:
+- numpy
+- setuptools
 
 ## Installation
 
-This package depends on the following:
-
-* numpy
-* RecarrayTools
-* PyFileIO
-
-which are all available on PyPI.
-
-Installation is simple and can be done in one of four ways:
-
-### Method 1
-
-This method simply uses the Python `pip3` command to download this 
-module and its dependencies:
-
-```pip3 install kpindex --user``` 
-
-### Method 2
-
-This method uses the Python wheel on the "releases" page of this 
-repository. Download the wheel, then isntall using `pip3`:
-
-```pip3 install kpindex-0.0.1-py3-none-any.whl --user```
-
-### Method 3
-
-Don't trust my prepackaged stuff? OK, clone this repository and build
-your own:
-
-```
-git clone https://github.com/mattkjames7/kpindex.git
-cd kpindex
-python3 setup.py bdist_wheel
-pip3 install dist/kpindex-0.0.1-py3-none-any.whl --user
+You can install the package using pip from PyPI. The command is as follows:
+```bash
+pip install kpindex
 ```
 
-### Method 4
+### Contributing
 
-So you don't like wheels? Fine. Clone the repository and just move the
-"kpindex" folder to your `$PYTHONPATH`.
+We welcome contributions and bug reports! If you'd like to contribute, please read our `CONTRIBUTING.md` file for details on how to get started.
 
-## Post-Install
+## Versioning
 
-In order for the module to be able to download the Kp index data from
-the FTP site, you will need to point it in the direction of a directory
-where you have read and write access using the `$KPDATA_PATH`
-environment variable. This can be done either by running the following
-in the terminal before starting Python, or inserting it into your 
-`~/.bashrc` file:
+The module uses a simple versioning scheme where the version number reflects changes in functionality. The format is `major.minor.patch`, where each component indicates significant updates:
+- **Major**: Breaking changes that significantly alter functionality.
+- **Minor**: New features that augment functionality without breaking existing code.
+- **Patch**: Bug fixes and minor adjustments to improve stability.
 
-```
-export KPDATA_PATH=/path/to/the/data
-```
+### Authors
 
-## Usage
+The module was created by [Your Name] (email: your.email@example.com).
 
-Using this module is very simple: the first time you run it you will 
-need to update the database (also when you think the database is out of 
-date) e.g.
+## Changelog
 
-```python
-import kpindex
-kpindex.UpdateLocalData()
-```
-
-It may take a couple of minutes to download the data and convert it, 
-then you are ready to read the data:
-
-```python
-data = kpindex.GetKp(Date)
-```
-
-where `Date` could be `None`, in which case ALL of the Kp indices ever
-will be returned; `Date` could be a single date in the format yyyymmdd,
-in which case only Kp indices fromt hat date will be returned; finally
-it could be a two element array/list/tuple containing two dates, in this
-case it will return all the indices from the start to the end date.
-
-
-Enjoy!
+A detailed changelog is maintained in `CHANGES.md`, tracking all major and minor changes to the project.

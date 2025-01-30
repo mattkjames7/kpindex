@@ -3,9 +3,21 @@ import PyFileIO as pf
 import numpy as np
 
 def _KpStringtoFloat(kps):
-	'''
+	"""
 	Converts Kp value string to a floating point e.g. '3+' -> 3.333.
-	'''
+	
+	Args:
+	    kps (str): The Kp value string, e.g., '3+'.
+	
+	Returns:
+	    float: The converted Kp value as a float.
+	
+	Example usage:
+	    >>> from example import _KpStringtoFloat
+	    >>> _KpStringtoFloat('3+') == 3.333...
+	    >>> _KpStringtoFloat('3-') == 2.666...
+	
+	"""
 	out = np.float32(kps[:-1])
 	pm = kps[-1]
 	if pm == '+':
@@ -16,15 +28,17 @@ def _KpStringtoFloat(kps):
 	
 
 def _ReadKPTab(fname):
-	'''
-	Reads and tries to make some sense of the Kp index tab files.
+	"""
+	This function reads a Kp index tab file and converts it into a structured numpy array.
 	
-	Input:
-		fname: full file name and path to .tab file.
+	The input is the full path to the .tab file.
 	
-	Returns:
-		numpy.recarray
-	'''
+	The output is an array with the following fields: Date, Sum, Activity, Ap, Cp, and Kp. Each of these corresponds to 3-hourly data points from the tab file.
+	
+	This function relies on functions from the 'Globals' module which define the data type used for storage (dtype).
+	
+	The .tab files typically contain time series data where each line represents a specific time step (3 hours) and contains various parameters related to geomagnetic activity.
+	"""
 
 	#define the data type
 	dtype = Globals.dtype
