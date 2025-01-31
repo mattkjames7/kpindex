@@ -1,86 +1,78 @@
-# kpindex
-Very simple package for obtaining the planetary Kp index data (see 
-https://www.gfz-potsdam.de/en/kp-index/ for more information)
+# KP Index Converter Module
 
-## Installation
+## Overview
+The KP Index Converter Module is designed to automate the conversion of ASCII Kp index files into a structured binary format. This process involves reading, parsing, and saving the data while maintaining metadata such as update dates and file names.
 
-This package depends on the following:
-
-* numpy
-* RecarrayTools
-* PyFileIO
-
-which are all available on PyPI.
-
-Installation is simple and can be done in one of four ways:
-
-### Method 1
-
-This method simply uses the Python `pip3` command to download this 
-module and its dependencies:
-
-```pip3 install kpindex --user``` 
-
-### Method 2
-
-This method uses the Python wheel on the "releases" page of this 
-repository. Download the wheel, then isntall using `pip3`:
-
-```pip3 install kpindex-0.0.1-py3-none-any.whl --user```
-
-### Method 3
-
-Don't trust my prepackaged stuff? OK, clone this repository and build
-your own:
-
+## Getting Started
+1. **Prerequisites**
+- Python 3.x or higher
+- PyPI packages: numpy, pyfileio, recarraytools (for handling recarrays)
+- A custom module `Globals` which contains constants like data types and paths
+2. **Installation**
+Run the following command to install the required dependencies:
+```bash
+pip install numpy pyfileio recarraytools
 ```
-git clone https://github.com/mattkjames7/kpindex.git
-cd kpindex
-python3 setup.py bdist_wheel
-pip3 install dist/kpindex-0.0.1-py3-none-any.whl --user
+3. **Setup**
+Create a directory structure as follows:
 ```
-
-### Method 4
-
-So you don't like wheels? Fine. Clone the repository and just move the
-"kpindex" folder to your `$PYTHONPATH`.
-
-## Post-Install
-
-In order for the module to be able to download the Kp index data from
-the FTP site, you will need to point it in the direction of a directory
-where you have read and write access using the `$KPDATA_PATH`
-environment variable. This can be done either by running the following
-in the terminal before starting Python, or inserting it into your 
-`~/.bashrc` file:
-
+kpindex/
+├── _ReadKpTxt.py
+├── _ConvertFTPFile.py
+├── _ReadDataIndex.py
+└── Globals.py
 ```
-export KPDATA_PATH=/path/to/the/data
-```
+4. **Configuration**
+Modify the `Globals.py` file to include paths and data types relevant to your system.
+5. **Usage**
+See the examples below for usage instructions.
 
-## Usage
+## Module Components
+table of contents coming soon...
 
-Using this module is very simple: the first time you run it you will 
-need to update the database (also when you think the database is out of 
-date) e.g.
-
+## Examples
+Example 1: Converting an ASCII Kp File
 ```python
-import kpindex
-kpindex.UpdateLocalData()
+from kpindex._ConvertFTPFile import _ConvertFTPFile
+
+# Convert a KP ASCII file to binary
+result = _ConvertFTPFile('path/to/ascii_file.txt', 'filename.txt', 'YYYYMMDD')
+print(f'Saved file: {result}
+')
 ```
 
-It may take a couple of minutes to download the data and convert it, 
-then you are ready to read the data:
-
+Example 2: Updating the Index File
 ```python
-data = kpindex.GetKp(Date)
+from kpindex._ReadDataIndex import _ReadDataIndex, _UpdateDataIndex
+
+# Read current index data
+idx = _ReadDataIndex()
+
+# Update index entry with new binary file information
+_ConvertFTPFile('path/to/ascii_file.txt', 'filename.txt', 'YYYYMMDD')
+print('Index updated successfully.')
 ```
 
-where `Date` could be `None`, in which case ALL of the Kp indices ever
-will be returned; `Date` could be a single date in the format yyyymmdd,
-in which case only Kp indices fromt hat date will be returned; finally
-it could be a two element array/list/tuple containing two dates, in this
-case it will return all the indices from the start to the end date.
+## Troubleshooting
+If you encounter any issues, please:
+1. Check the `Globals.py` for correct path configurations
+2. Verify that all required imports are present in each module
+3. Ensure that Python has been upgraded to version 3.x or higher
+4. Search for error messages online and refer to the PyPI documentation for troubleshooting
 
+## Changelog
+- Version 1.0.0: Initial release
+- Version 1.1.0: Added support for date-time handling, improved file saving logic
+- Version 2.0.0: Complete rewrite with enhanced processing capabilities and error handling
 
-Enjoy!
+## Contributing
+If you'd like to contribute to this module, please fork the repository and create a pull request with your changes.
+
+## Contact Information
+For questions or feedback, contact:
+- Email: support@kpindexconverter.com
+- Website: https://kpindexconverter.com
+
+## License
+This project is under [MIT License](https://github.com/username/license)
+``

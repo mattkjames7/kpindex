@@ -6,6 +6,19 @@ import DateTimeTools as TT
 def _ReadKpTxt(fname):
     
 
+	"""
+	Reads a text file containing Kp and D values.
+	
+	Args:
+	    fname (str): The path to the text file.
+	
+	Returns:
+	    (object): A structure containing date, ut0, ut1, utc, Kp, Ap, D.
+	
+	Note:
+	    This function assumes that the input file uses a specific format with columns separated by whitespace. If the file contains comment lines, they are ignored.
+	
+	"""
 	#read in the ascii
 	lines = pf.ReadASCIIFile(fname)
 	nl = lines.size

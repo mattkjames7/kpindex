@@ -18,6 +18,14 @@ months = { 	'Jan':1,
 
 def _ListFiles(currYear):
 
+	"""
+	ListFiles function docstring.
+	
+	Args:
+	   currYear (int): The current year to list up to including this year.
+	Returns:
+	   list: A list of filenames following the format Kp_ap_{YYYY}.txt, where YYYY ranges from 1932 to currYear inclusive.
+	"""
 	#we need a list of specific file names
 	#as this directory oin the FTP site now
 	#stores multiple different types of files
@@ -28,11 +36,17 @@ def _ListFiles(currYear):
 
 
 def _ParseFTP():
-	'''
-	This routine will read the FTP index file looking for file names
-	and their associated update dates.
+	"""
+	This function parses the FTP index file to extract file names, their associated update dates and FTP addresses. It returns these as lists.
 	
-	'''
+	Args:
+	    None
+	
+	Returns:
+	    - FileNames (list): List of filenames.
+	    - Addresses (list): List of FTP addresses.
+	    - UpdateDates (list): List of update dates in 'YYYYMMDD' format.
+	"""
 	
 
 	#get the current year

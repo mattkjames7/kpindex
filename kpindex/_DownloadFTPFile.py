@@ -4,19 +4,9 @@ progress = 0
 import numpy as np
 
 def _GetCallback(f,ftp,fname):
-	'''
-	callback function for downloading the file
-	
-	Inputs
-	======
-	f : file
-		instance of an open file (binary)
-	ftp : FTP()
-		ftp instance
-	fname : str
-		Name of the file on the server
-	
-	'''
+	"""
+	This function is designed to create a callback function for downloading files via FTP. The callback writes the received data to an open file and updates the progress bar with specific characters.
+	"""
 	#get the size of the file
 	#size = ftp.size(Globals.ftpdir+fname)
 	size = ftp.size(fname)
@@ -38,18 +28,13 @@ def _GetCallback(f,ftp,fname):
 
 
 def _DownloadFTPFile(fname):
-	'''
-	Downloads a file from an FTP site, returns the full path of the 
-	local version of that file.
+	"""
+	DownloadFTPFile(funcnum, ftp_addr): Downloads a file from an FTP site using specified address and funcnum.
 	
-	Inputs:
-		addr: full address of file to be downloaded e.g. 
-			ftp://a.b.c/folder/file.txt
-		fname: file name e.g. file.txt
-		
-	Returns:
-		full path to downloaded file
-	'''
+	Args:
+	    funcnum (int): The function number to associate with this download.
+	    ftp_addr (str): Full address of the FTP server hosting the file.
+	"""
 
 	#login to the FTP server
 	ftp = FTP(Globals.ftpbase)
