@@ -2,14 +2,20 @@ import os
 from . import Globals
 
 def _DownloadFTPIndex(ftp):
-	'''
-	This routine downloads the index.html of the Potzdam FTP site
-	ftp://ftp.gfz-potsdam.de/pub/home/obs/kp-ap/tab/
+	"""
+	
+	Downloads the index.html file from the Potsdam FTP site.
+	
+	This routine retrieves the index file from the specified FTP location and saves it in a temporary directory. It checks for the existence of the temporary folder and creates it if necessary. The function returns a boolean indicating whether the index file was successfully downloaded.
+	
+	Args:
+	    ftp (ftplib.FTP): An instance of FTP class for interacting with the FTP server.
 	
 	Returns:
-		Boolean, True if index file exists
+	    bool: True if the index file exists after the download attempt, otherwise False.
 	
-	'''
+	
+	"""
 	#check that the temporary folder exists
 	if not os.path.isdir(Globals.DataPath+'tmp/'):
 		os.makedirs(os.path.dirname(Globals.DataPath+'tmp/'))

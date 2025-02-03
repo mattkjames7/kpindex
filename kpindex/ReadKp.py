@@ -4,15 +4,18 @@ import os
 import RecarrayTools as RT
 
 def ReadKp(Year):
-	'''
-	Read in the converted Kp data for one yeah.
+	"""
 	
-	Inputs: int
-		Year yyyy.
-		
-	Returns: 
-		numpy.recarray
-	'''
+	Read in the converted Kp data for one year.
+	
+	Args:
+	    Year (int): The year (yyyy) for which to read the Kp data.
+	
+	Returns:
+	    numpy.recarray: The converted Kp data for the specified year.
+	    If the file is not found, an empty numpy.recarray with the defined dtype is returned.
+	
+	"""
 	dtype = Globals.dtype
 		
 	fname = Globals.DataPath+'bin/'+'Kp-{:04d}.bin'.format(Year)

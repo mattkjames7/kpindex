@@ -6,6 +6,17 @@ import DateTimeTools as TT
 def _ReadKpTxt(fname):
     
 
+	"""
+	Reading Kp and Ap data from a text file.
+	
+	This function reads an ASCII file that contains Kp and Ap values along with their respective dates and times. It filters out any lines that contain comments, structures the data into a specific format, and returns it as a structured NumPy record array.
+	
+	Args:
+	    fname (str): The name of the ASCII file to read.
+	
+	Returns:
+	    np.recarray: A structured array containing the parsed data with fields for Date, ut0, ut1, utm, utc, Kp, Ap, and D.
+	"""
 	#read in the ascii
 	lines = pf.ReadASCIIFile(fname)
 	nl = lines.size

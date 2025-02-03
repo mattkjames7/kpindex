@@ -2,19 +2,25 @@ from . import Globals
 import numpy as np
 
 def _CompareUpdates(newdates,newfiles,idx):
-	'''
-	This routine will compare the FTP data with the local data to see 
-	which need updating.
+	"""
 	
-	Inputs:
-		newdates: list of update dates as read in from the FTP site
-		newfiles: list of file names (original) from fTP site
-		idx: local index of stored data files
-		
+	Compare FTP data with local data to determine which files need updating.
+	
+	This function compares the update dates and filenames from an FTP source with
+	the locally stored data, identifying which files should be refreshed based
+	on discrepancies in update dates or if the files do not exist locally.
+	
+	Args:
+	    newdates (list): A list of update dates retrieved from the FTP site.
+	    newfiles (list): A list of original file names from the FTP site.
+	    idx (object): An object containing the local index of stored data files,
+	        which includes attributes `OldFileName` and `UpdateDate`.
+	
 	Returns:
-		Boolean array
+	    numpy.ndarray: A boolean array indicating which files require updates.
 	
-	'''
+	
+	"""
 	
 	nf = np.size(newfiles)
 	update = np.zeros(nf,dtype='bool')

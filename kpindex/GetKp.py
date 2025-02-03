@@ -6,18 +6,17 @@ from ._ReadDataIndex import _ReadDataIndex
 import DateTimeTools as TT
 
 def GetKp(Date=None):
-	'''
-	Retrieves Kp data from memory, or from file if it hasn't been 
-	loaded yet.
+	"""
 	
-	Inputs:
-		Date: Integer date in the format yyyymmdd, or two element integer
-			dates for loading a range of dates.
-
-			
+	Retrieves Kp data from memory, or from file if it hasn't been loaded yet.
+	
+	Args:
+	    Date (Union[int, List[int]], optional): Integer date in the format yyyymmdd, or a list of two integer dates for loading a range of dates. Defaults to None.
+	
 	Returns:
-		numpy.recarray
-	'''
+	    numpy.recarray: The Kp data, which may include all available data or a subset based on the provided date parameter.
+	
+	"""
 
 	#check if the data are loded in memory already
 	if Globals.Data is None:
