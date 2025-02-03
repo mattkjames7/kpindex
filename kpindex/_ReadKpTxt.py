@@ -6,6 +6,17 @@ import DateTimeTools as TT
 def _ReadKpTxt(fname):
     
 
+	"""
+	Reads Kp time series data from a specified text file.
+	
+	This function reads an ASCII text file containing Kp indices data, processes the content to remove any comment lines, and returns the structured data in a recarray format. The data includes year, month, day, various time formats, and Kp values.
+	
+	Args:
+	    fname (str): The filename of the ASCII text file to read.
+	
+	Returns:
+	    numpy.recarray: A structured array containing the processed Kp data with fields for date, time in various formats, Kp values, and related metrics.
+	"""
 	#read in the ascii
 	lines = pf.ReadASCIIFile(fname)
 	nl = lines.size
