@@ -6,10 +6,20 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 def getversion():
-	'''
-	read the version string from __init__
-	
-	'''
+        """
+
+        Reads the version string from the __init__.py file located in the
+kpindex directory.
+
+        This function searches for the `__version__` variable in the __init__.py
+file and returns its value.
+        If the variable is not found, it returns 'unknown'.
+
+        Returns:
+            str: The version string of the package or 'unknown' if not found.
+
+
+        """
 	#get the init file path
 	thispath = os.path.abspath(os.path.dirname(__file__))+'/'
 	initfile = thispath + 'kpindex/__init__.py'

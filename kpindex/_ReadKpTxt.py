@@ -6,6 +6,24 @@ import DateTimeTools as TT
 def _ReadKpTxt(fname):
     
 
+        """
+        Reads Kp data from a specified ASCII text file and returns a structured
+array containing the parsed data.
+
+        This function processes the content of the file, removing any lines that
+contain comments,
+        parses the remaining lines into specific data types, and organizes them
+into a structured array.
+
+        Args:
+            fname (str): The name of the ASCII file to read.
+
+        Returns:
+            np.recarray: A structured array containing the parsed data with the
+fields 'Date', 'ut0', 'ut1', 'utm', 'utc', 'Kp', 'Ap', and 'D'.
+
+
+        """
 	#read in the ascii
 	lines = pf.ReadASCIIFile(fname)
 	nl = lines.size
