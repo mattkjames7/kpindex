@@ -10,11 +10,21 @@ from ._ConvertFTPFile import _ConvertFTPFile
 from ._DeleteFTPFile import _DeleteFTPFile
 
 def UpdateLocalData(Force=False):
-	'''
-	This will download and convert any Kp data which is missing from 
-	the local archive.
+	"""
 	
-	'''
+	Download and convert any missing Kp data from the local archive.
+	
+	This function connects to an FTP server to check for and download Kp data files that are not present in the local archive. If the `Force` parameter is set to True, it will download all files without checking update dates.
+	
+	Args:
+	    Force (bool, optional): If set to True, all files will be downloaded regardless of the update status. Defaults to False.
+	
+	Returns:
+	    None: This function does not return a value. It prints status messages regarding the download and conversion process.
+	
+	Raises:
+	    Exception: If the FTP download fails due to write permission issues or other errors.
+	"""
 	
 	ftp = FTP(Globals.ftpbase)
 	ftp.login()  
