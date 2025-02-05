@@ -3,9 +3,23 @@ import PyFileIO as pf
 import numpy as np
 
 def _KpStringtoFloat(kps):
-	'''
-	Converts Kp value string to a floating point e.g. '3+' -> 3.333.
-	'''
+	"""
+	
+	Converts a Kp value string representation to a floating point number.
+	
+	This function takes a string that represents a Kp value, such as '3+' or
+	'2-', and converts it into a floating point number. The last character of
+	the string is used to adjust the base value: if it is a '+', the function
+	adds one third; if it is a '-', it subtracts one third.
+	
+	Args:
+	    kps (str): A string representation of the Kp value, where the last
+	character indicates a positive or negative adjustment.
+	
+	Returns:
+	    float: The corresponding floating point value of the Kp string.
+	
+	"""
 	out = np.float32(kps[:-1])
 	pm = kps[-1]
 	if pm == '+':
@@ -16,15 +30,16 @@ def _KpStringtoFloat(kps):
 	
 
 def _ReadKPTab(fname):
-	'''
-	Reads and tries to make some sense of the Kp index tab files.
+	"""
+	Reads and processes Kp index tab files to extract relevant data.
 	
-	Input:
-		fname: full file name and path to .tab file.
+	Args:
+	    fname (str): Full file name and path to the .tab file.
 	
 	Returns:
-		numpy.recarray
-	'''
+	    numpy.recarray: A structured array containing the extracted Kp index
+	data, including date, sum, activity, Ap, Cp, and 3-hourly Kp values.
+	"""
 
 	#define the data type
 	dtype = Globals.dtype

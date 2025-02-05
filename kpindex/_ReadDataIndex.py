@@ -4,10 +4,18 @@ import PyFileIO as pf
 import numpy as np
 
 def _ReadDataIndex():
-	'''
-	Reads an index file containing the file names, update dates and
-	resolutions.
-	'''
+	"""
+	Reads an index file containing file names, update dates, and resolutions.
+	
+	    This function checks for the existence of an index file at a predefined
+	path. If the file exists, it reads the data into a structured numpy array.
+	If the file does not exist, it returns an empty record array with the
+	defined data types.
+	
+	    Returns:
+	        np.recarray: A record array containing the data from the index file,
+	or an empty record array if the file does not exist.
+	"""
 	#define the datatype
 	dtype = [('FileName','object'),('OldFileName','object'),('UpdateDate','object')]
 	
