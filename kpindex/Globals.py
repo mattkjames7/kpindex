@@ -1,12 +1,15 @@
 import os
 
 #try and find the KPDATA_PATH variable - this is where data will be stored
-ModulePath = os.path.dirname(__file__)+'/'
-try:
-	DataPath = os.getenv('KPDATA_PATH')+'/'
-except:
-	print('Please set KPDATA_PATH environment variable')
-	DataPath = ''
+ModulePath = os.path.dirname(__file__)
+
+DataPath = os.getenv('KPDATA_PATH')
+if not DataPath:
+	DataPath = f"{os.getenv('HOME')}/kpdata"
+	if not os.path.isdir(DataPath):
+		print(f"$KPDATA_PATH not set, creating: {DataPath}")
+		print('Please set KPDATA_PATH environment variable to use a different path')
+		os.makedirs(DataPath)
 
 ftpbase = 'ftp.gfz-potsdam.de'
 #ftpdir = 'pub/home/obs/kp-ap/tab/'

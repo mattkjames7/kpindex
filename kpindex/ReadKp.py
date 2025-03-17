@@ -15,7 +15,7 @@ def ReadKp(Year):
 	'''
 	dtype = Globals.dtype
 		
-	fname = Globals.DataPath+'bin/'+'Kp-{:04d}.bin'.format(Year)
+	fname = f"{Globals.DataPath}/bin/Kp-{Year:04d}.bin"
 	
 	if not os.path.isfile(fname):
 		print('File not found: '+fname)

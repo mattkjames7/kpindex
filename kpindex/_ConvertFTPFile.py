@@ -25,11 +25,11 @@ def _ConvertFTPFile(FullPath,fname,UpdateDate):
 	Year = out.Date[0]//10000
 	
 	#save file
-	outfname = 'Kp-{:04d}.bin'.format(Year)
-	outpath = Globals.DataPath+'bin/'
+	outfname = f"Kp-{Year:04d}.bin"
+	outpath = f"{Globals.DataPath}/bin"
 	if not os.path.isdir(outpath):
-		os.makedirs(os.path.dirname(outpath))
-	RT.SaveRecarray(out,outpath+outfname)
+		os.makedirs(outpath)
+	RT.SaveRecarray(out,f"{outpath}/{outfname}")
 	print('Saved file: '+outfname)
 	
 	#update index
