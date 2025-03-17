@@ -1,0 +1,46 @@
+name: "Package Test"
+
+on: 
+    push:
+        tags:
+        - "v*.*.*"
+    pull_request:
+    workflow_dispatch:
+        inputs:
+            python_version:
+                type: choice
+                description: "Python version to run package test on"
+                default: "3.13"
+                options:
+                    - "3.10"
+                    - "3.11"
+                    - "3.12"
+                    - "3.13"
+
+jobs:
+    manual_test:
+        if: github.event_name == 'workflow_dispatch'
+        uses: ./.github/workflows/reusable_package.yml
+        with:
+            python_version: ${{ github.event.inputs.python_version }}
+            upload_github: "false"
+            upload_pypi: "false"
+
+    pull_request:
+        if: github.event_name == 'pull_request'
+        uses: ./.github/workflows/reusable_package.yml
+        strategy:
+            matrix:
+                python_version: ["3.10","3.11","3.12","3.13"]
+        with:
+            python_version: "${{ matrix.python_version }}"
+            upload_github: "false"
+            upload_pypi: "false"
+            
+    release:
+        if: github.ref_type == 'tag'
+        uses: ./.github/workflows/reusable_package.yml
+        with:
+            python_version: ${{ github.event.inputs.python_version }}
+            upload_github: "true"
+            upload_pypi: "true"        
