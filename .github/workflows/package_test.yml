@@ -16,6 +16,10 @@ on:
                     - "3.11"
                     - "3.12"
                     - "3.13"
+            run_tests:
+                type: boolean
+                description: "Run tests"
+                default: true
 
 jobs:
     manual_test:
@@ -25,6 +29,7 @@ jobs:
             python_version: ${{ github.event.inputs.python_version }}
             upload_github: "false"
             upload_pypi: "false"
+            run_tests: "${{ github.event.inputs.run_tests }}"
 
     pull_request:
         if: github.event_name == 'pull_request'
@@ -36,6 +41,7 @@ jobs:
             python_version: "${{ matrix.python_version }}"
             upload_github: "false"
             upload_pypi: "false"
+            run_tests: "true"
             
     release:
         if: github.ref_type == 'tag'
@@ -44,3 +50,4 @@ jobs:
             python_version: ${{ github.event.inputs.python_version }}
             upload_github: "true"
             upload_pypi: "true"        
+            run_tests: "true"

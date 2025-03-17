@@ -30,10 +30,10 @@ RUN apt-get update && \
         python3.10-venv \
         python3.10-dev && \
     rm -rf /var/lib/apt/lists/*
-WORKDIR $HOME
-
+WORKDIR /app
+USER kp
 # Create a virtual environment, upgrade pip and install your package (editable mode)
-RUN python3.10 -m venv venv && \
+RUN cd /app && python3.10 -m venv venv && \
     ./venv/bin/pip install --upgrade pip 
 CMD ["tail", "-f", "/dev/null"]
 #######################################
@@ -47,10 +47,10 @@ RUN apt-get update && \
         python3.11-dev && \
     rm -rf /var/lib/apt/lists/*
 WORKDIR /app
-
-RUN python3.11 -m venv venv && \
-    ./venv/bin/pip install --upgrade pip && \
-    ./venv/bin/pip install 
+USER kp
+# Create a virtual environment, upgrade pip and install your package (editable mode)
+RUN cd /app && python3.10 -m venv venv && \
+    ./venv/bin/pip install --upgrade pip 
 CMD ["tail", "-f", "/dev/null"]
 #######################################
 # Stage for Python 3.12               #
@@ -63,10 +63,10 @@ RUN apt-get update && \
         python3.12-dev && \
     rm -rf /var/lib/apt/lists/*
 WORKDIR /app
-
-RUN python3.12 -m venv venv && \
-    ./venv/bin/pip install --upgrade pip && \
-    ./venv/bin/pip install 
+USER kp
+# Create a virtual environment, upgrade pip and install your package (editable mode)
+RUN cd /app && python3.10 -m venv venv && \
+    ./venv/bin/pip install --upgrade pip 
 CMD ["tail", "-f", "/dev/null"]
 #######################################
 # Stage for Python 3.13               #
@@ -79,8 +79,9 @@ RUN apt-get update && \
         python3.13-dev && \
     rm -rf /var/lib/apt/lists/*
 WORKDIR /app
-
-RUN python3.13 -m venv venv && \
+USER kp
+# Create a virtual environment, upgrade pip and install your package (editable mode)
+RUN cd /app && python3.10 -m venv venv && \
     ./venv/bin/pip install --upgrade pip 
 CMD ["tail", "-f", "/dev/null"]
 
