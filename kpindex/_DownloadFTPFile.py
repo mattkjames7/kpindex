@@ -17,6 +17,9 @@ def _GetCallback(f,ftp,fname):
 		Name of the file on the server
 	
 	'''
+	# Switch to binary mode before making SIZE call
+	ftp.voidcmd("TYPE I")
+
 	#get the size of the file
 	#size = ftp.size(Globals.ftpdir+fname)
 	size = ftp.size(fname)
