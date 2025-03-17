@@ -33,7 +33,7 @@ def GetKp(Date=None):
 		nf = YM.size
 		n = 0
 		for i in range(0,nf):
-			f = open(Globals.DataPath+'bin/'+fnames[i],'rb')
+			f = open(f"{Globals.DataPath}/bin/{fnames[i]}",'rb')
 			tmp = np.fromfile(f,dtype='int32',count=1)[0]
 			f.close()
 			n += tmp

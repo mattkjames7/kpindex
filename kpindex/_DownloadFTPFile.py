@@ -17,6 +17,9 @@ def _GetCallback(f,ftp,fname):
 		Name of the file on the server
 	
 	'''
+	# Switch to binary mode before making SIZE call
+	ftp.voidcmd("TYPE I")
+
 	#get the size of the file
 	#size = ftp.size(Globals.ftpdir+fname)
 	size = ftp.size(fname)
@@ -37,7 +40,7 @@ def _GetCallback(f,ftp,fname):
 	return callback
 
 
-def _DownloadFTPFile(fname):
+def _DownloadFTPFile(fname,retries=3):
 	'''
 	Downloads a file from an FTP site, returns the full path of the 
 	local version of that file.
@@ -52,18 +55,28 @@ def _DownloadFTPFile(fname):
 	'''
 
 	#login to the FTP server
-	ftp = FTP(Globals.ftpbase)
+	ftp = FTP(Globals.ftpbase, timeout=10)
 	ftp.login()  
 	ftp.cwd(Globals.ftpdir)
 
 	#open the output file
-	f = open(Globals.DataPath+'tmp/'+fname,"wb")	
+	f = open(f"{Globals.DataPath}/tmp/{fname}","wb")	
 	
 	#get the callback function
 	cb = _GetCallback(f,ftp,fname)
 	
 	#download binary file using ftplib
-	ftp.retrbinary('RETR '+fname, cb)
+	success = False
+	for i in range(0,retries):
+		try:
+			ftp.retrbinary('RETR '+fname, cb)
+			success = True
+			break
+		except:
+			print(f"Timeout downloading {fname} (attempt {i+1} of {retries})")
+	if not success:
+		print(f"Failed to download {fname} {retries} times")
+		raise TimeoutError
 	print()
 	
 	#close the file
@@ -73,4 +86,4 @@ def _DownloadFTPFile(fname):
 	ftp.close()
 	
 	#return the file name
-	return Globals.DataPath+'tmp/'+fname
+	return f"{Globals.DataPath}/tmp/{fname}"

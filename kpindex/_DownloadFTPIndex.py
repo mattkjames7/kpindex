@@ -11,11 +11,11 @@ def _DownloadFTPIndex(ftp):
 	
 	'''
 	#check that the temporary folder exists
-	if not os.path.isdir(Globals.DataPath+'tmp/'):
-		os.makedirs(os.path.dirname(Globals.DataPath+'tmp/'))
+	if not os.path.isdir(f"{Globals.DataPath}/tmp"):
+		os.makedirs(f"{Globals.DataPath}/tmp")
 
 	#download using ftplib
-	foo=open(Globals.DataPath+'tmp/index.html',"w")	
+	foo=open(f"{Globals.DataPath}/tmp/index.html","w")	
 	def customWriter(line):
 		foo.write(line + "\n")
 
@@ -24,5 +24,5 @@ def _DownloadFTPIndex(ftp):
 	
 
 	#check that the file exists, return True if so
-	return os.path.isfile(Globals.DataPath+'tmp/index.html')
+	return os.path.isfile(f"{Globals.DataPath}/tmp/index.html")
 	
