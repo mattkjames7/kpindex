@@ -42,20 +42,21 @@ jobs:
 
       - name: Run Docker Image
         run: |
+          echo "docker_image is '$docker_image'"
           docker_container=kptest
           echo "docker_container=$docker_container" >> GITHUB_ENV
           docker run --name $docker_container --rm -d $docker_image
 
       - name: Build Package
         run: |
-          docker exec -u kp -it $docker_container bash -c "cd /kpindex && source /app/venv/bin/activate && python setup.py bdist_wheel"
+          docker exec -u kp $docker_container bash -c "cd /kpindex && source /app/venv/bin/activate && python setup.py bdist_wheel"
           pkg=$(docker exec -u kp $docker_container bash -c "cd /kpindex/dist && ls")
           echo "Built package: $pkg"
           echo "pkg=$pkg" >> GITHUB_ENV
 
       - name: Install Package
         run: |
-          docker exec -u kp -it $docker_container bash -c "cd /kpindex/dist && /app/venv/bin/pip install $pkg"
+          docker exec -u kp $docker_container bash -c "cd /kpindex/dist && /app/venv/bin/pip install $pkg"
 
       - name: Copy Package
         run: |
