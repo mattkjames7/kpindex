@@ -67,6 +67,8 @@ jobs:
         if: ${{ inputs.run_tests == 'true' }}
         run: |
           echo "Run update test"
+          docker exec -u kp ${{ env.docker_container }} bash -c \
+          "source /app/venv/bin/activate && /kpindex/tests/test_update.sh"
 
       - name: Test Read
         if: ${{ inputs.run_tests == 'true' }}
