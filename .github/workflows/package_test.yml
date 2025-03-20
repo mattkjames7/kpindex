@@ -27,7 +27,7 @@ on:
 
 jobs:
     manual_test:
-        if: github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.run_all == false
         uses: ./.github/workflows/reusable_package.yml
         with:
             python_version: ${{ github.event.inputs.python_version }}
