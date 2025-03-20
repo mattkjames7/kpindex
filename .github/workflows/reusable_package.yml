@@ -38,14 +38,14 @@ jobs:
           pyref="py${pyver//./}"
           docker_image="kpindex:${pyref}"
           echo "Docker image: ${docker_image}"
-          echo "docker_image=${docker_image}" >> GITHUB_ENV
+          echo "docker_image=${docker_image}" >> $GITHUB_ENV
           docker build --target $pyref -t $docker_image .
 
       - name: Run Docker Image
         run: |
           echo "docker_image is '${{ env.docker_image }}'"
           docker_container=kptest
-          echo "docker_container=$docker_container" >> GITHUB_ENV
+          echo "docker_container=$docker_container" >> $GITHUB_ENV
           docker run --name $docker_container --rm -d ${{ env.docker_image }}
 
       - name: Build Package
@@ -53,7 +53,7 @@ jobs:
           docker exec -u kp ${{ env.docker_container }} bash -c "cd /kpindex && source /app/venv/bin/activate && python setup.py bdist_wheel"
           pkg=$(docker exec -u kp ${{ env.docker_container }} bash -c "cd /kpindex/dist && ls")
           echo "Built package: $pkg"
-          echo "pkg=$pkg" >> GITHUB_ENV
+          echo "pkg=$pkg" >> $GITHUB_ENV
 
       - name: Install Package
         run: |
