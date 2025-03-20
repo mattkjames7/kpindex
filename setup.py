@@ -53,6 +53,7 @@ setuptools.setup(
 		'numpy',
 		'RecarrayTools',
 		'PyFileIO',
+		'DateTimeTools'
 	],
 )
 
