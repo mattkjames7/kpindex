@@ -35,7 +35,8 @@ RUN chown kp: -R /app
 USER kp
 # Create a virtual environment, upgrade pip and install your package (editable mode)
 RUN cd /app && python3.10 -m venv venv && \
-    ./venv/bin/pip install --upgrade pip 
+    ./venv/bin/pip install --upgrade pip && \
+    pip install setuptools wheel
 CMD ["tail", "-f", "/dev/null"]
 #######################################
 # Stage for Python 3.11               #
@@ -52,7 +53,8 @@ RUN chown kp: -R /app
 USER kp
 # Create a virtual environment, upgrade pip and install your package (editable mode)
 RUN cd /app && python3.11 -m venv venv && \
-    ./venv/bin/pip install --upgrade pip 
+    ./venv/bin/pip install --upgrade pip && \
+    pip install setuptools wheel
 CMD ["tail", "-f", "/dev/null"]
 #######################################
 # Stage for Python 3.12               #
@@ -69,7 +71,8 @@ RUN chown kp: -R /app
 USER kp
 # Create a virtual environment, upgrade pip and install your package (editable mode)
 RUN cd /app && python3.12 -m venv venv && \
-    ./venv/bin/pip install --upgrade pip 
+    ./venv/bin/pip install --upgrade pip && \
+    pip install setuptools wheel 
 CMD ["tail", "-f", "/dev/null"]
 #######################################
 # Stage for Python 3.13               #
@@ -86,6 +89,7 @@ RUN chown kp: -R /app
 USER kp
 # Create a virtual environment, upgrade pip and install your package (editable mode)
 RUN cd /app && python3.13 -m venv venv && \
-    ./venv/bin/pip install --upgrade pip 
+    ./venv/bin/pip install --upgrade pip && \
+    pip install setuptools wheel 
 CMD ["tail", "-f", "/dev/null"]
 
