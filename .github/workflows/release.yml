@@ -2,9 +2,6 @@
 name: Release Package
 
 on:
-  push:
-    branches:
-      - master
   workflow_dispatch:
 
 jobs:
@@ -43,10 +40,12 @@ jobs:
           if git rev-parse "$tag" >/dev/null 2>&1; then
               echo "Tag $tag already exists"
               echo "::set-output name=exists::true"
+              exit 1
           else
               echo "Tag $tag does not exist"
               echo "::set-output name=exists::false"
           fi
+          
 
       - name: Create and Push Tag
         run: |
