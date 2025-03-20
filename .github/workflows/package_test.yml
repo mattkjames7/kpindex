@@ -27,7 +27,7 @@ on:
 
 jobs:
     manual_test:
-        if: github.event_name == 'workflow_dispatch' && github.event.inputs.run_all == false
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.run_all == 'false'
         uses: ./.github/workflows/reusable_package.yml
         with:
             python_version: ${{ github.event.inputs.python_version }}
@@ -37,9 +37,10 @@ jobs:
 
 
     manual_test_all:
-        if: github.event_name == 'workflow_dispatch' && github.event.inputs.run_all == true
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.run_all == 'true'
         uses: ./.github/workflows/reusable_package.yml
         strategy:
+            fail-fast: false
             matrix:
                 python_version: ["3.10","3.11","3.12","3.13"]
         with:
