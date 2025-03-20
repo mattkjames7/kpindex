@@ -49,7 +49,7 @@ RUN apt-get update && \
 WORKDIR /app
 USER kp
 # Create a virtual environment, upgrade pip and install your package (editable mode)
-RUN cd /app && python3.10 -m venv venv && \
+RUN cd /app && python3.11 -m venv venv && \
     ./venv/bin/pip install --upgrade pip 
 CMD ["tail", "-f", "/dev/null"]
 #######################################
@@ -65,7 +65,7 @@ RUN apt-get update && \
 WORKDIR /app
 USER kp
 # Create a virtual environment, upgrade pip and install your package (editable mode)
-RUN cd /app && python3.10 -m venv venv && \
+RUN cd /app && python3.12 -m venv venv && \
     ./venv/bin/pip install --upgrade pip 
 CMD ["tail", "-f", "/dev/null"]
 #######################################
@@ -81,7 +81,7 @@ RUN apt-get update && \
 WORKDIR /app
 USER kp
 # Create a virtual environment, upgrade pip and install your package (editable mode)
-RUN cd /app && python3.10 -m venv venv && \
+RUN cd /app && python3.13 -m venv venv && \
     ./venv/bin/pip install --upgrade pip 
 CMD ["tail", "-f", "/dev/null"]
 
