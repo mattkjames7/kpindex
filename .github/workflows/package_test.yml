@@ -20,6 +20,10 @@ on:
                 type: boolean
                 description: "Run tests"
                 default: true
+            run_all:
+                type: boolean
+                description: "Run all tests"
+                default: false
 
 jobs:
     manual_test:
@@ -31,6 +35,19 @@ jobs:
             upload_pypi: "false"
             run_tests: "${{ github.event.inputs.run_tests }}"
 
+
+    manual_test_all:
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.run_all == true
+        uses: ./.github/workflows/reusable_package.yml
+        strategy:
+            matrix:
+                python_version: ["3.10","3.11","3.12","3.13"]
+        with:
+            python_version: "${{ matrix.python_version }}"
+            upload_github: "false"
+            upload_pypi: "false"
+            run_tests: "${{ github.event.inputs.run_tests }}"
+            
     pull_request:
         if: github.event_name == 'pull_request'
         uses: ./.github/workflows/reusable_package.yml
