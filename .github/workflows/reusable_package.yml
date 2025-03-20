@@ -74,6 +74,8 @@ jobs:
         if: ${{ inputs.run_tests == 'true' }}
         run: |
           echo "Run read test"
+          docker exec -u kp ${{ env.docker_container }} bash -c \
+          "/app/venv/bin/python /kpindex/tests/test_read.sh"          
 
       - name: Test Get
         if: ${{ inputs.run_tests == 'true' }}
