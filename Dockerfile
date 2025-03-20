@@ -31,6 +31,8 @@ RUN apt-get update && \
         python3.10-dev && \
     rm -rf /var/lib/apt/lists/*
 WORKDIR /app
+RUN useradd kp
+RUN chown kp: -R /app
 USER kp
 # Create a virtual environment, upgrade pip and install your package (editable mode)
 RUN cd /app && python3.10 -m venv venv && \
@@ -47,6 +49,8 @@ RUN apt-get update && \
         python3.11-dev && \
     rm -rf /var/lib/apt/lists/*
 WORKDIR /app
+RUN useradd kp
+RUN chown kp: -R /app
 USER kp
 # Create a virtual environment, upgrade pip and install your package (editable mode)
 RUN cd /app && python3.11 -m venv venv && \
@@ -63,6 +67,8 @@ RUN apt-get update && \
         python3.12-dev && \
     rm -rf /var/lib/apt/lists/*
 WORKDIR /app
+RUN useradd kp
+RUN chown kp: -R /app
 USER kp
 # Create a virtual environment, upgrade pip and install your package (editable mode)
 RUN cd /app && python3.12 -m venv venv && \
@@ -79,6 +85,8 @@ RUN apt-get update && \
         python3.13-dev && \
     rm -rf /var/lib/apt/lists/*
 WORKDIR /app
+RUN useradd kp
+RUN chown kp: -R /app
 USER kp
 # Create a virtual environment, upgrade pip and install your package (editable mode)
 RUN cd /app && python3.13 -m venv venv && \
