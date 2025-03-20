@@ -36,13 +36,13 @@ jobs:
         run: |
           pyver="${{ inputs.python_version }}"
           pyref="py${pyver//./}"
-          $docker_image="kpindex:$pyref"
+          docker_image="kpindex:$pyref"
           echo "docker_image=$docker_image" >> GITHUB_ENV
           docker build --target $pyref -t $docker_image .
 
       - name: Run Docker Image
         run: |
-          $docker_container=kptest
+          docker_container=kptest
           echo "docker_container=$docker_container" >> GITHUB_ENV
           docker run --name $docker_container --rm -d $docker_image
 
