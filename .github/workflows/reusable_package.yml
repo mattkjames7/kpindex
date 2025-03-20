@@ -37,6 +37,7 @@ jobs:
           pyver="${{ inputs.python_version }}"
           pyref="py${pyver//./}"
           docker_image="kpindex:${pyref}"
+          echo "Docker image: ${docker_image}"
           echo "docker_image=${docker_image}" >> GITHUB_ENV
           docker build --target $pyref -t $docker_image .
 
