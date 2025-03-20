@@ -58,13 +58,15 @@ jobs:
     # Use your reusable workflow for manual_test_all
     needs: tag
     uses: ./.github/workflows/reusable_package.yml
+    strategy:
+      matrix:
+        python_version: ["3.10", "3.11", "3.12", "3.13"]
     with:
       upload_github: "false"
       upload_pypi: "false"
       run_tests: "true"
-    strategy:
-      matrix:
-        python_version: ["3.10", "3.11", "3.12", "3.13"]
+      python_version: ${{ matrix.python_version }}
+
 
   build:
     needs: tests
