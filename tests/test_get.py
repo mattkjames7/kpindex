@@ -25,7 +25,7 @@ def get_date():
     
     assert isinstance(data,np.recarray), "Data should be np.recarray"
 
-    assert data.size != 8, "Unexpected amount of data"
+    assert data.size == 8, f"Unexpected amount of data: {data.size}"
 
     assert all(data.Date == 20100101), "Unexpected date found"
 
@@ -41,7 +41,7 @@ def get_date_range():
     
     assert isinstance(data,np.recarray), "Data should be np.recarray"
 
-    assert data.size != 24, "Unexpected amount of data"
+    assert data.size == 24, f"Unexpected amount of data: {data.size}"
 
     assert all((data.Date >= 20100101) & (data.Date <= 20100103)), "Unexpected date found"
 
