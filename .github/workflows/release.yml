@@ -20,7 +20,7 @@ jobs:
         id: get_version
         run: |
           # Read the version from kpindex/__init__.py using a Python one-liner
-          version=$(python3 -c "import re; f=open('kpindex/__init__.py').read(); print(re.search(r'__version__\s*=\s*[\"\\\']([^\"\\\']+)[\"\\\']', f).group(1))")
+          version=v$(python3 -c "from getversion import getversion; print(getversion())")
           echo "Found version: $version"
           echo "::set-output name=version::$version"
 
