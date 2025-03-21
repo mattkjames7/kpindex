@@ -117,7 +117,7 @@ jobs:
           docker cp ${{ env.docker_container }}:/kpindex/dist/$(echo ${{ steps.build_pkg.outputs.pkg }}) .
   
   release:
-    needs: build
+    needs: [build, get_version]
     runs-on: ubuntu-latest
     steps:
       - name: Create GitHub Release
