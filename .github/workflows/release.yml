@@ -134,6 +134,12 @@ jobs:
           asset_name: ${{ env.pkg }}
           asset_content_type: application/octet-stream
 
+      - name: Prepare Package for PyPI
+        run: |
+          mkdir -p dist
+          mv ${{ env.pkg }} dist/
+          ls -la dist
+
       - name: Publish Package to PyPI
         uses: pypa/gh-action-pypi-publish@v1.4.2
         with:
