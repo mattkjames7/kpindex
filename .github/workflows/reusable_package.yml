@@ -7,14 +7,6 @@ on:
         type: string
         description: "Python version to use for packaging and tests"
         required: true
-      upload_github:
-        type: string
-        description: "Upload package to github"
-        default: "false"
-      upload_pypi:
-        type: string
-        description: "Upload package to PyPI"
-        default: "false"
       run_tests:
         type: string
         description: "Run tests"
@@ -83,16 +75,6 @@ jobs:
           echo "Run get test"
           docker exec -u kp ${{ env.docker_container }} bash -c \
           "/app/venv/bin/python /kpindex/tests/test_get.py"  
-
-      - name: Upload to GitHub
-        if: ${{ inputs.upload_github == 'true' }}
-        run: |
-          echo "Upload to GitHub"
-
-      - name: Upload to PyPI
-        if: ${{ inputs.upload_pypi == 'true' }}
-        run: |
-          echo "Upload to PyPI"
 
       - name: Clean Up
         if: always()

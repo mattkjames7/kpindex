@@ -31,8 +31,6 @@ jobs:
         uses: ./.github/workflows/reusable_package.yml
         with:
             python_version: ${{ github.event.inputs.python_version }}
-            upload_github: "false"
-            upload_pypi: "false"
             run_tests: "${{ github.event.inputs.run_tests }}"
 
 
@@ -45,8 +43,6 @@ jobs:
                 python_version: ["3.10","3.11","3.12","3.13"]
         with:
             python_version: "${{ matrix.python_version }}"
-            upload_github: "false"
-            upload_pypi: "false"
             run_tests: "${{ github.event.inputs.run_tests }}"
             
     pull_request:
@@ -57,15 +53,11 @@ jobs:
                 python_version: ["3.10","3.11","3.12","3.13"]
         with:
             python_version: "${{ matrix.python_version }}"
-            upload_github: "false"
-            upload_pypi: "false"
             run_tests: "true"
             
     release:
         if: github.ref_type == 'tag'
         uses: ./.github/workflows/reusable_package.yml
         with:
-            python_version: ${{ github.event.inputs.python_version }}
-            upload_github: "true"
-            upload_pypi: "true"        
+            python_version: ${{ github.event.inputs.python_version }}  
             run_tests: "true"
