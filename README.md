@@ -1,4 +1,7 @@
 # kpindex
+
+![Monthly Test Status](https://github.com/mattkjames7/kpindex/actions/workflows/monthly_test.yml/badge.svg)
+
 Very simple package for obtaining the planetary Kp index data (see 
 https://www.gfz-potsdam.de/en/kp-index/ for more information)
 
