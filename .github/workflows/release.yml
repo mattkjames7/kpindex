@@ -4,6 +4,8 @@ name: Release Package
 on:
   workflow_dispatch:
 
+run-name: "Release Package"
+
 jobs:
   get_version:
     runs-on: ubuntu-latest
@@ -55,16 +57,18 @@ jobs:
 
   tests:
     # Use your reusable workflow for manual_test_all
+    name: Run Tests
     needs: tag
     uses: ./.github/workflows/reusable_package.yml
     strategy:
       matrix:
-        python_version: ["3.10", "3.11", "3.12", "3.13"]
+        python_version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
     with:
       run_tests: "true"
       python_version: ${{ matrix.python_version }}
 
   build:
+    name: Build and Release Package
     needs: [tests, get_version]
     runs-on: ubuntu-latest
     steps:
@@ -80,12 +84,12 @@ jobs:
       - name: Build Docker Image
         run: |
           # Use a default python version for the Docker target – adjust if needed.
-          pyver="3.13"
+          pyver="3.14"
           pyref="py${pyver//./}"
           docker_image="kpindex:${pyref}"
           echo "Docker image: ${docker_image}"
           echo "docker_image=${docker_image}" >> $GITHUB_ENV
-          docker build --target $pyref -t $docker_image .
+          docker build --build-arg PYTHON_VERSION=$pyver -t $docker_image .
 
       - name: Run Docker Container
         run: |

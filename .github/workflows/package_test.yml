@@ -10,12 +10,13 @@ on:
             python_version:
                 type: choice
                 description: "Python version to run package test on"
-                default: "3.13"
+                default: "3.14"
                 options:
                     - "3.10"
                     - "3.11"
                     - "3.12"
                     - "3.13"
+                    - "3.14"
             run_tests:
                 type: boolean
                 description: "Run tests"
@@ -25,8 +26,10 @@ on:
                 description: "Run all tests"
                 default: false
 
+run-name: "Package Test"
 jobs:
     manual_test:
+        name: Manual Test
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.run_all == 'false'
         uses: ./.github/workflows/reusable_package.yml
         with:
@@ -35,27 +38,30 @@ jobs:
 
 
     manual_test_all:
+        name: Manual Test All
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.run_all == 'true'
         uses: ./.github/workflows/reusable_package.yml
         strategy:
             fail-fast: false
             matrix:
-                python_version: ["3.10","3.11","3.12","3.13"]
+                python_version: ["3.10","3.11","3.12","3.13","3.14"]
         with:
             python_version: "${{ matrix.python_version }}"
             run_tests: "${{ github.event.inputs.run_tests }}"
             
     pull_request:
+        name: Pull Request Test
         if: github.event_name == 'pull_request'
         uses: ./.github/workflows/reusable_package.yml
         strategy:
             matrix:
-                python_version: ["3.10","3.11","3.12","3.13"]
+                python_version: ["3.10","3.11","3.12","3.13","3.14"]
         with:
             python_version: "${{ matrix.python_version }}"
             run_tests: "true"
             
     release:
+        name: Release Test
         if: github.ref_type == 'tag'
         uses: ./.github/workflows/reusable_package.yml
         with:
